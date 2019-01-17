@@ -1,0 +1,9 @@
+# En Praat
+
+# selecciona el TextGrid y el audio
+etiquetas = selected("TextGrid")
+etiquetas$ = selected$("TextGrid")
+audio = selected("Sound")
+audio$ = selected$("Sound")
+
+writeInfoLine: etiquetas,tab$,etiquetas$,tab$,audio,tab$, audio$
