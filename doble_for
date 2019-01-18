@@ -1,0 +1,33 @@
+# Rutina de seleccion de objetos
+
+select all
+
+# número de audios seleccionados
+n_s = numberOfSelected ("Sound")
+
+# número de TextGrids seleccionados
+n_t = numberOfSelected ("TextGrid")
+
+
+# primeros comandos for
+for i to n_s
+	audio [i] = selected ("Sound", i)
+endfor
+
+for i to n_t
+	etiquetas [i] = selected ("TextGrid", i)
+endfor
+#####################
+
+# segundo for
+
+for i to n_t
+selectObject: audio [i], etiquetas [i]
+	sonido = selected ("Sound")
+	textgrid = selected ("TextGrid")
+	textgrid$ = selected$ ("TextGrid")
+	select textgrid
+	dur = Get total duration
+appendInfoLine: audio [i],tab$, etiquetas [i], tab$,textgrid$,tab$,dur
+endfor
+
