@@ -1,0 +1,25 @@
+# en Praat
+# Para seleccionar un directorio
+# crea una lista con los wav, TextGrids y Pitch existentes en ese directorio
+# abre los archivos .wav
+
+directoryName$ = chooseDirectory$: "Elije directorio"
+
+strings1 = Create Strings as file list: "lista_s", directoryName$ + "/*.wav"
+strings2 = Create Strings as file list: "lista_t", directoryName$ + "/*.TextGrid"
+strings3 = Create Strings as file list: "lista_p", directoryName$ + "/*.Pitch"
+
+select strings1
+numberOfFiles1 = Get number of strings
+
+select strings2
+numberOfFiles2 = Get number of strings
+
+select strings3
+numberOfFiles3 = Get number of strings
+
+for ifile to numberOfFiles1
+	select Strings lista_s
+	file_name$ = Get string... ifile
+	Read from file... 'directoryName$'/'file_name$'
+endfor
