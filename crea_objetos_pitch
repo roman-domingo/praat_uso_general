@@ -1,0 +1,36 @@
+# en Praat
+# Para seleccionar un directorio
+# crea una lista con los .wav existentes en ese directorio y crea el objeto Pitch correspondiente a cada uno de ellos
+# abre los archivos .wav
+
+directoryName$ = chooseDirectory$: "Elije directorio"
+
+
+# Esta línea especifica la extensión del archivo de tono
+extensionTono$ = ".Pitch"
+
+
+# La línea siguiente crea un string de todos los wav que hay en el directorio
+strings1 = Create Strings as file list: "lista_s", directoryName$ + "/*.wav"
+
+select strings1
+
+# Lee el número de líneas del string (ahora sabe cuántos .wav hay en ese directorio)
+numberOfFiles1 = Get number of strings
+
+
+# comando for que realiza selección de cada wav y crea el pitch y lo guarda
+
+
+for ifile to numberOfFiles1
+    select Strings lista_s
+    fileName$ = Get string... ifile
+    Read from file... 'directoryName$'/'fileName$'
+    nombreArchivo$= fileName$ + extensionTono$
+    To Pitch: 0, 75, 600
+    Save as text file: "'directoryName$'/'nombreArchivo$'"
+endfor
+
+
+select all
+Remove
